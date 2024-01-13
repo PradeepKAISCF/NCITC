@@ -34,7 +34,7 @@ const Signup = () => {
                 tweettimer: Date.now()
             }
 
-            fetch('http://localhost:5000/register', {
+            fetch('https://twitter-backend-hsxx.onrender.com/register', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'

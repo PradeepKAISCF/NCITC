@@ -24,7 +24,7 @@ const Login = () => {
                     setCheck(data)
                 }) */
                 await logIn(email, password);
-                fetch(`http://localhost:5000/valid?email=${email}`,{
+                fetch(`https://twitter-backend-hsxx.onrender.com/valid?email=${email}`,{
                     method:'post'
                 })
                 navigate("/");
@@ -35,7 +35,7 @@ const Login = () => {
             } */
             
         } catch (err) {
-            fetch(`http://localhost:5000/invalid?email=${email}`,{
+            fetch(`https://twitter-backend-hsxx.onrender.com/invalid?email=${email}`,{
                 method:'post'
             })
             .then(res=>res.json())

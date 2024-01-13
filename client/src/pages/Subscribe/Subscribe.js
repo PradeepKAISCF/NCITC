@@ -18,7 +18,7 @@ function Subscribe() {
     if(plan === 1){
       alert("Subrcibed To Free Plan");
       //dispatch(subscription(currentUser?.result?._id,0))
-      fetch('http://localhost:5000/sub', {
+      fetch('https://twitter-backend-hsxx.onrender.com/sub', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'
@@ -58,7 +58,7 @@ function Subscribe() {
               //dispatch(subscription(currentUser?.result?._id,2))
             }
 
-            fetch('http://localhost:5000/sub', {
+            fetch('https://twitter-backend-hsxx.onrender.com/sub', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'
