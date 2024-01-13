@@ -43,9 +43,10 @@ function TweetBox() {
         e.preventDefault();
 
         if (user?.providerData[0]?.providerId === 'password') {
-            fetch(`https://pacific-peak-30751.herokuapp.com/loggedInUser?email=${email}`)
+            fetch(`http://localhost:5000/loggedInUser?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
+                    //console.log(data)
                     setName(data[0]?.name)
                     setUsername(data[0]?.username)
                 })
@@ -67,7 +68,7 @@ function TweetBox() {
             console.log(userPost);
             setPost('')
             setImageURL('')
-            fetch('https://pacific-peak-30751.herokuapp.com/post', {
+            fetch(`http://localhost:5000/post?email=${email}`, {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'
@@ -76,7 +77,7 @@ function TweetBox() {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    if(data.msg === 0){window.alert("You have reached the max Limit of tweets for today. Upgrade your plan to Tweet more")}
 
                 })
         }

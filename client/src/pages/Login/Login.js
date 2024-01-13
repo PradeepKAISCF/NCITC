@@ -10,6 +10,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [check,setCheck] = useState(false)
     const { logIn, googleSignIn } = useUserAuth();
     const navigate = useNavigate();
 
@@ -17,9 +18,28 @@ const Login = () => {
         e.preventDefault();
         setError("");
         try {
-            await logIn(email, password);
-            navigate("/");
+            /* fetch('http://localhost:5000/check')
+                .then(res => res.json())
+                .then(data=>{
+                    setCheck(data)
+                }) */
+                await logIn(email, password);
+                fetch(`http://localhost:5000/valid?email=${email}`,{
+                    method:'post'
+                })
+                navigate("/");
+            /* if(check === true){
+                
+            }else{
+                window.alert("Your account is currently locked")
+            } */
+            
         } catch (err) {
+            fetch(`http://localhost:5000/invalid?email=${email}`,{
+                method:'post'
+            })
+            .then(res=>res.json())
+            .then(data=>{console.log(data)})
             setError(err.message);
             window.alert(err.message);
         }
@@ -37,10 +57,6 @@ const Login = () => {
 
     return (
         <>
-
-
-
-
             <div className="login-container">
                 <div className="image-container">
                     <img className=" image" src={twitterimg} alt="twitterImage" />
@@ -74,17 +90,6 @@ const Login = () => {
                             </div>
                         </form>
                         <hr />
-                        <div>
-                            <GoogleButton
-
-                                className="g-btn"
-                                type="light"
-
-                                onClick={handleGoogleSignIn}
-                            />
-
-
-                        </div>
                     </div>
                     <div>
                         Don't have an account?

@@ -1,15 +1,18 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC1UsxjORHhL9LfqNkl_wsTJ2rV3eDSvy0",
-    authDomain: "twitter-clone-eb901.firebaseapp.com",
-    projectId: "twitter-clone-eb901",
-    storageBucket: "twitter-clone-eb901.appspot.com",
-    messagingSenderId: "434624553161",
-    appId: "1:434624553161:web:25fea1e9cf538e6ad8ad18"
+    apiKey: "AIzaSyDrLmxVYg40Wq30hr9XhXJ1FZDfwrqgwHw",
+  authDomain: "twitter-clone-d9196.firebaseapp.com",
+  projectId: "twitter-clone-d9196",
+  storageBucket: "twitter-clone-d9196.appspot.com",
+  messagingSenderId: "917100327917",
+  appId: "1:917100327917:web:26175ee7ce48e7df4b2de4",
+  measurementId: "G-S1FG1126PG"
 };
 
 const app = initializeApp(firebaseConfig);
+export const firestore = getFirestore(app);
 export const auth = getAuth(app);
 export default app;

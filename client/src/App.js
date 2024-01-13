@@ -14,6 +14,7 @@ import Lists from "./pages/Lists/Lists";
 import Profile from "./pages/Profile/Profile";
 import More from "./pages/More/More";
 import Notifications from "./pages/Notifications/Notifications";
+import Subscribe from "./pages/Subscribe/Subscribe";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="bookmarks" element={<Bookmarks />} />
             <Route path="lists" element={<Lists />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="subscribe" element={<Subscribe />} />
             <Route path="more" element={<More />} />
           </Route>
           <Route path="/login" element={<Login />} />

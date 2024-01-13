@@ -26,9 +26,15 @@ const Signup = () => {
                 username: username,
                 name: name,
                 email: email,
+                failed: 0,
+                lockTimer : null,
+                premium: false,
+                sub: 1,
+                tweet: 1,
+                tweettimer: Date.now()
             }
 
-            fetch('https://pacific-peak-30751.herokuapp.com/register', {
+            fetch('http://localhost:5000/register', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'
@@ -116,15 +122,6 @@ const Signup = () => {
                             </div>
                         </form>
                         <hr />
-                        <div className="google-button">
-                            <GoogleButton
-
-                                className="g-btn"
-                                type="light"
-
-                                onClick={handleGoogleSignIn}
-                            />
-                        </div>
                         <div>
                             Already have an account?
                             <Link

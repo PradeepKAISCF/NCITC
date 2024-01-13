@@ -15,6 +15,7 @@ import Divider from '@mui/material/Divider';
 import DoneIcon from '@mui/icons-material/Done';
 import Button from "@mui/material/Button";
 import ListItemIcon from '@mui/material/ListItemIcon';
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import { Avatar } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -64,6 +65,9 @@ function Sidebar({ handleLogout, user }) {
       </CustomeLink>
       <CustomeLink to='/home/profile'>
         <SidebarOptions Icon={PermIdentityIcon} text="Profile" />
+      </CustomeLink>
+      <CustomeLink to='/home/subscribe'>
+        <SidebarOptions Icon={SubscriptionsIcon} text="Subscribe" />
       </CustomeLink>
       <CustomeLink to='/home/more'>
         <SidebarOptions Icon={MoreIcon} text="More" />

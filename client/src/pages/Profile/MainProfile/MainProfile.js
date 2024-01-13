@@ -5,6 +5,7 @@ import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import AddLinkIcon from '@mui/icons-material/AddLink';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import Post from "./Post/Post"
 import { useNavigate } from 'react-router-dom';
 import EditProfile from '../EditProfile/EditProfile';
@@ -21,7 +22,7 @@ const MainProfile = ({ user }) => {
   const username = user?.email?.split('@')[0];
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch(`https://pacific-peak-30751.herokuapp.com/userpost?email=${user?.email}`)
+    fetch(`http://localhost:5000/userpost?email=${user?.email}`)
       .then(res => res.json())
       .then(data => {
         setPosts(data);
@@ -47,7 +48,7 @@ const MainProfile = ({ user }) => {
         setIsLoading(false)
 
         if (url) {
-          fetch(`https://pacific-peak-30751.herokuapp.com/userUpdates/${user?.email}`, {
+          fetch(`http://localhost:5000/userUpdates/${user?.email}`, {
             method: "PATCH",
             headers: {
               'content-type': 'application/json'
@@ -86,7 +87,7 @@ const MainProfile = ({ user }) => {
         }
         setIsLoading(false)
         if (url) {
-          fetch(`https://pacific-peak-30751.herokuapp.com/userUpdates/${user?.email}`, {
+          fetch(`http://localhost:5000/userUpdates/${user?.email}`, {
             method: "PATCH",
             headers: {
               'content-type': 'application/json'
@@ -165,6 +166,7 @@ const MainProfile = ({ user }) => {
                       {loggedInUser[0]?.name ? loggedInUser[0].name : user && user.displayName}
                     </h3>
                     <p className='usernameSection'>@{username}</p>
+                    {(loggedInUser[0]?.premium === true )? <p className='usernameSection' style={{fontFamily:'cursive', fontSize:'15px'}}>premium user <WorkspacePremiumIcon/> </p>:<></>} 
                   </div>
                   <EditProfile user={user} loggedInUser={loggedInUser} />
                 </div>
