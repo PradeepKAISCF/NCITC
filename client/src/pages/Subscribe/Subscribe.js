@@ -104,6 +104,9 @@ function Subscribe() {
             <div style={{height:'3px',backgroundColor:'grey',marginRight:'5px', marginBottom:'10px'}}></div>
             <ul>
               <li>
+                Exclusively For Influencers and celebrities
+              </li>
+              <li>
                 Customizable Premium badges
               </li>
               <li>
