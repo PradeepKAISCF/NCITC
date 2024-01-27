@@ -2,7 +2,7 @@
   border-right: 1px solid var(--twitter-background);
   flex: 0.3;
   position: inherit;
-  min-width: 150px;
+  min-width: 100px;
   margin-top: 20px;
   padding-right: 20px;
   overflow-y: scroll;
@@ -59,8 +59,11 @@
   opacity: 50%;
 }
 
+.burger-menu{
+  display: none;
+}
 @media screen and (max-width:688px) {
-  .sidebar {
-    display: none;
+  .burger-menu {
+    display: flex;
   }
 }

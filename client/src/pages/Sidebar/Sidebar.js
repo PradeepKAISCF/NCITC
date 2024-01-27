@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
 import SidebarOptions from "./SidebarOptions";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import { Avatar } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import CustomeLink from "./CumtomeLink";
@@ -29,9 +30,31 @@ import { useNavigate } from "react-router-dom";
 
 function Sidebar({ handleLogout, user }) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [show,setShow] = useState(true);
   const openMenu = Boolean(anchorEl);
   const [loggedInUser] = useLoggedInUser();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 688) {
+        setShow(true);
+      } else {
+        setShow(false);
+      }
+    };
+
+    // Initial check on component mount
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -44,7 +67,13 @@ function Sidebar({ handleLogout, user }) {
   return (
 
     <div className="sidebar">
+      <div style={{display:'flex',justifyContent:'space-between'}}>
       <TwitterIcon className="sidebar__twitterIcon" />
+      <div className="burger-menu" onClick={()=>setShow(!show)}>
+      <MenuIcon />
+      </div>
+      </div>
+      {show && (<div>
       <CustomeLink to='/home/feed'>
         <SidebarOptions active Icon={HomeIcon} text="Home" />
       </CustomeLink>
@@ -75,6 +104,7 @@ function Sidebar({ handleLogout, user }) {
       <Button variant="outlined" className="sidebar__tweet" fullWidth>
         Tweet
       </Button>
+      </div>)}
       <div className="Profile__info">
         <Avatar src={loggedInUser[0]?.profileImage ? loggedInUser[0]?.profileImage : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"} />
         <div className="user__info">
