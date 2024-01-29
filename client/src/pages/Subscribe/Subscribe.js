@@ -38,8 +38,8 @@ function Subscribe() {
                 })
       }else{
         var options = {
-          key: "rzp_test_CXdwbcglCWoYWZ",
-          key_secret:"Vm3yvjsvO40AMjQSNdSSyypv",
+          key: "rzp_test_7kuHOXieqQI1Go",
+          key_secret:"Cvseho95ZIwZBK8l5WJBGPlq",
           amount: amount *100,
           currency:"INR",
           name:"STARTUP_PROJECTS",
