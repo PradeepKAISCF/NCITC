@@ -3,13 +3,14 @@ import '../pages.css'
 import { blue } from '@mui/material/colors'
 import useLoggedInUser from '../../hooks/useLoggedInUser';
 import { useUserAuth } from '../../context/UserAuthContext';
+import {loadStripe} from '@stripe/stripe-js'
 
 function Subscribe() {
 
     const [plan,setPlan] = useState(null)
     const {user} = useUserAuth()
 
-    const pay = (e)=>{
+/*     const pay = (e)=>{
     e.preventDefault();
     let amount;
     if(plan === 0 ) amount = 799
@@ -93,7 +94,29 @@ function Subscribe() {
         var pay = new window.Razorpay(options);
         pay.open();
       }
-  }
+  } */
+
+    const pay = async()=>{
+      const stripe = await loadStripe("pk_test_51OfNKhSGqCjG3WmbWUEBZSvCGWc3lG6DlhD4ycIxPYNv9kSsJVmSgcVEslYLAfQ7mDVbvQmYS3e6qQ7Iji6gw4mi008p4hNLsb")
+
+      const body = {
+        products: plan
+      }
+
+      const headers={
+        "Content-Type" : 'application/json'
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/checkout',{
+          method:'POST',
+          headers:headers,
+          body:JSON.stringify(body)
+        }) 
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
     return (
         <div style={{display:'flex',flexDirection:'column', marginTop:'30px', marginBottom:'50px', color:blue}}>

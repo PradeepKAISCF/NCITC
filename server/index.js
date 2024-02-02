@@ -2,8 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const nodemailer = require('nodemailer');
+const stripe = require("stripe")("sk_test_51OfNKhSGqCjG3WmbFcXK0Qh1Vnd7wwIAusDFf2axDrEb81MWXX60Lx8qk60NOw2mohBtO2b7plTfFohdZSOtIKwd00ZGXiZlCK")
 
 const app = express();
+const router = express.Router()
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -39,6 +41,26 @@ async function run() {
         })
 
         // post
+        app.post("/checkout",async(req,res)=>{
+            const {plan} = req.body;
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types:['card'],
+                line_items:[{
+                    price_data:{
+                        currency:'INR',
+                        product_data:{
+                            name:'hi',
+                        },
+                        unit_amount:79900
+                    },
+                    quantity:1
+
+                }],
+                mode:'payment',
+                success_url:'https://www.youtube.com/',
+                cancel_url:'https://www.youtube.com/'
+            })
+        })
         app.post('/invalid',async(req,res)=>{
             const email =req.query.email;
             const user = await userCollection.findOneAndUpdate({ email: email },{$inc:{failed:1}},{ returnDocument: 'after' })
