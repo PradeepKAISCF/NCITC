@@ -7,10 +7,10 @@ import {loadStripe} from '@stripe/stripe-js'
 
 function Subscribe() {
 
-    const [plan,setPlan] = useState(null)
+    const [plan,setPlan] = useState(0)
     const {user} = useUserAuth()
 
-/*     const pay = (e)=>{
+     const pay = (e)=>{
     e.preventDefault();
     let amount;
     if(plan === 0 ) amount = 79900
@@ -94,9 +94,9 @@ function Subscribe() {
         var pay = new window.Razorpay(options);
         pay.open();
       }
-  } */
+  }
 
-    const pay = async()=>{
+   /* const pay = async()=>{
       const stripe = await loadStripe("pk_test_51OfNKhSGqCjG3WmbWUEBZSvCGWc3lG6DlhD4ycIxPYNv9kSsJVmSgcVEslYLAfQ7mDVbvQmYS3e6qQ7Iji6gw4mi008p4hNLsb")
 
       const body = {
@@ -116,7 +116,7 @@ function Subscribe() {
       } catch (error) {
         console.log(error)
       }
-    }
+    }*/
 
     return (
         <div style={{display:'flex',flexDirection:'column', marginTop:'30px', marginBottom:'50px', color:blue}}>
