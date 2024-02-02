@@ -13,9 +13,9 @@ function Subscribe() {
 /*     const pay = (e)=>{
     e.preventDefault();
     let amount;
-    if(plan === 0 ) amount = 799
-    if(plan === 2) amount = 100
-    if(plan === 3) amount = 1000
+    if(plan === 0 ) amount = 79900
+    if(plan === 2) amount = 10000
+    if(plan === 3) amount = 100000
     if(plan === 1){
       alert("Subrcibed To Free Plan");
       //dispatch(subscription(currentUser?.result?._id,0))
@@ -41,7 +41,7 @@ function Subscribe() {
         var options = {
           key: "rzp_test_7kuHOXieqQI1Go",
           key_secret:"Cvseho95ZIwZBK8l5WJBGPlq",
-          amount: amount *100,
+          amount: amount,
           currency:"INR",
           name:"STARTUP_PROJECTS",
           description:"for testing purpose",
